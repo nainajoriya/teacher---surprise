@@ -1,0 +1,1063 @@
+/* =====================================================
+   BASIC RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: #050713;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+
+    height: 500px;
+
+    background: #4c1d95;
+
+    filter: blur(180px);
+
+    opacity: .30;
+
+    top: -200px;
+
+    left: -150px;
+
+    z-index: -2;
+
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+
+    height: 500px;
+
+    background: #0e7490;
+
+    filter: blur(180px);
+
+    opacity: .20;
+
+    right: -200px;
+
+    bottom: -150px;
+
+    z-index: -2;
+
+}
+
+
+/* =====================================================
+   OPENING
+===================================================== */
+
+#opening {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #02030b;
+
+    transition: 1s;
+
+}
+
+
+#opening.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.terminal {
+
+    width: 90%;
+
+    max-width: 650px;
+
+    padding: 35px;
+
+    background: rgba(15,23,42,.95);
+
+    border: 1px solid #334155;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 70px rgba(124,58,237,.25);
+
+    text-align: center;
+
+}
+
+
+.terminal-top {
+
+    text-align: left;
+
+    margin-bottom: 25px;
+
+}
+
+
+.terminal-top span {
+
+    display: inline-block;
+
+    width: 11px;
+
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #64748b;
+
+    margin-right: 5px;
+
+}
+
+
+.terminal-command {
+
+    color: #4ade80;
+
+    font-family: monospace;
+
+    text-align: left;
+
+    margin-bottom: 15px;
+
+}
+
+
+#loadingText {
+
+    color: #94a3b8;
+
+    font-family: monospace;
+
+    min-height: 22px;
+
+    text-align: left;
+
+}
+
+
+.loader {
+
+    height: 4px;
+
+    background: #1e293b;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin: 20px 0 30px;
+
+}
+
+
+.loader-bar {
+
+    width: 40%;
+
+    height: 100%;
+
+    background: #8b5cf6;
+
+    animation: loading 2s infinite;
+
+}
+
+
+.python-symbol {
+
+    font-size: 65px;
+
+    animation: float 2s infinite;
+
+}
+
+
+.terminal h1 {
+
+    font-size: 38px;
+
+    margin: 20px 0;
+
+}
+
+
+.terminal h1 span {
+
+    display: block;
+
+    color: #c4b5fd;
+
+    margin-top: 8px;
+
+}
+
+
+.intro {
+
+    color: #94a3b8;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+
+    padding: 15px 27px;
+
+    border: 1px solid #8b5cf6;
+
+    border-radius: 30px;
+
+    background: #7c3aed;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(124,58,237,.5);
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+#mainContent {
+
+    display: none;
+
+    max-width: 850px;
+
+    margin: auto;
+
+}
+
+
+#mainContent.show {
+
+    display: block;
+
+    animation: fadeUp 1.5s;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+}
+
+
+.code-text {
+
+    color: #67e8f9;
+
+    font-family: monospace;
+
+    font-size: 18px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.hero h1 {
+
+    font-size: 55px;
+
+}
+
+
+.hero h1 span {
+
+    color: #f472b6;
+
+}
+
+
+.hero p {
+
+    color: #94a3b8;
+
+    font-size: 18px;
+
+    margin-top: 15px;
+
+}
+
+
+.scroll-text {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 60px;
+
+}
+
+
+/* =====================================================
+   COMMON SECTIONS
+===================================================== */
+
+section:not(.hero) {
+
+    margin: 35px 20px;
+
+    padding: 45px 30px;
+
+    border-radius: 28px;
+
+    background: rgba(15,23,42,.55);
+
+    border: 1px solid rgba(148,163,184,.15);
+
+    backdrop-filter: blur(12px);
+
+}
+
+
+.section-label {
+
+    color: #a78bfa;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    margin-bottom: 12px;
+
+}
+
+
+section h2 {
+
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo-section {
+
+    text-align: center;
+
+}
+
+
+.photo-glow {
+
+    width: 230px;
+
+    height: 230px;
+
+    margin: auto;
+
+    padding: 6px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #22d3ee,
+            #ec4899
+        );
+
+    animation: rotateGlow 5s linear infinite;
+
+}
+
+
+.photo-glow img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 6px solid #0f172a;
+
+}
+
+
+.photo-section p {
+
+    color: #94a3b8;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline {
+
+    max-width: 600px;
+
+    margin: auto;
+
+}
+
+
+.timeline-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 15px;
+
+}
+
+
+.timeline-icon {
+
+    min-width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(124,58,237,.2);
+
+    font-size: 32px;
+
+}
+
+
+.timeline-item h3 {
+
+    margin-bottom: 5px;
+
+}
+
+
+.timeline-item p {
+
+    color: #94a3b8;
+
+}
+
+
+.timeline-line {
+
+    width: 2px;
+
+    height: 30px;
+
+    background: #7c3aed;
+
+    margin-left: 47px;
+
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter {
+
+    background: #fffdf7;
+
+    color: #292524;
+
+    padding: 40px;
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.3);
+
+    transform: rotate(0deg);
+
+}
+
+
+.letter-icon {
+
+    text-align: center;
+
+    font-size: 40px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.letter h2 {
+
+    color: #292524;
+
+    text-align: left;
+
+}
+
+
+#letterText {
+
+    line-height: 1.9;
+
+    min-height: 160px;
+
+}
+
+
+.signature {
+
+    margin-top: 30px;
+
+    text-align: right;
+
+    font-family: Georgia, serif;
+
+}
+
+
+/* =====================================================
+   POETRY
+===================================================== */
+
+.poetry-section {
+
+    text-align: center;
+
+}
+
+
+.poem {
+
+    max-width: 620px;
+
+    margin: auto;
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    color: #e2e8f0;
+
+}
+
+
+.poem p {
+
+    margin-bottom: 25px;
+
+}
+
+
+.voice-controls {
+
+    margin-top: 25px;
+
+}
+
+
+.voice-btn {
+
+    background: #7c3aed;
+
+    margin-right: 8px;
+
+}
+
+
+.stop-btn {
+
+    background: #334155;
+
+}
+
+
+.voice-status {
+
+    margin-top: 15px;
+
+    color: #a78bfa;
+
+    font-size: 14px;
+
+    min-height: 20px;
+
+}
+
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skill-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.skill-grid div {
+
+    padding: 25px 10px;
+
+    text-align: center;
+
+    background:
+        rgba(124,58,237,.15);
+
+    border:
+        1px solid rgba(167,139,250,.2);
+
+    border-radius: 18px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   HIDDEN MESSAGE
+===================================================== */
+
+.hidden-section {
+
+    text-align: center;
+
+}
+
+
+.hidden-section p {
+
+    color: #94a3b8;
+
+    margin-bottom: 20px;
+
+}
+
+
+#hiddenMessage {
+
+    margin-top: 30px;
+
+    color: #f9a8d4;
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    animation: fadeUp 1s;
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-section {
+
+    text-align: center;
+
+    padding: 100px 25px !important;
+
+}
+
+
+.big-heart {
+
+    font-size: 75px;
+
+    animation: heartbeat 1.5s infinite;
+
+}
+
+
+.final-section h1 {
+
+    font-size: 45px;
+
+    margin: 20px 0;
+
+}
+
+
+.final-poetry {
+
+    color: #cbd5e1;
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    line-height: 2;
+
+}
+
+
+.final-message {
+
+    margin-top: 35px;
+
+    color: #94a3b8;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+}
+
+
+.final-message span {
+
+    color: #c4b5fd;
+
+}
+
+
+.you {
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+    color: #f472b6;
+
+    margin-top: 15px;
+
+}
+
+
+.made-with {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 50px;
+
+    line-height: 1.8;
+
+}
+
+
+footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #475569;
+
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes loading {
+
+    0% {
+
+        transform: translateX(-120%);
+
+    }
+
+    100% {
+
+        transform: translateX(350%);
+
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes float {
+
+    0%, 100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-12px);
+
+    }
+
+}
+
+
+@keyframes heartbeat {
+
+    0%, 100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.15);
+
+    }
+
+}
+
+
+@keyframes rotateGlow {
+
+    from {
+
+        filter: hue-rotate(0deg);
+
+    }
+
+    to {
+
+        filter: hue-rotate(360deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+
+    .terminal {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .terminal h1 {
+
+        font-size: 29px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 40px;
+
+    }
+
+
+    section:not(.hero) {
+
+        margin: 25px 12px;
+
+        padding: 30px 18px;
+
+    }
+
+
+    .photo-glow {
+
+        width: 180px;
+
+        height: 180px;
+
+    }
+
+
+    .skill-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .letter {
+
+        padding: 25px;
+
+    }
+
+
+    .poem {
+
+        font-size: 18px;
+
+    }
+
+
+    .final-section h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .voice-btn,
+    .stop-btn {
+
+        margin: 5px;
+
+    }
+
+}
